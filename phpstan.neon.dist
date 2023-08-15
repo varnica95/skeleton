@@ -1,0 +1,11 @@
+
+parameters:
+  excludes_analyse:
+    - %rootDir%/../../../vendor/
+  level: max
+  paths:
+    - %rootDir%/../../../src
+
+  inferPrivatePropertyTypeFromConstructor: true
+  checkMissingIterableValueType: false
+  checkGenericClassInNonGenericObjectType: false

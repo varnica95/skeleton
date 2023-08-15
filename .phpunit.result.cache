@@ -1,0 +1,1 @@
+{"version":1,"defects":{"App\\Tests\\Unit\\Service\\UrlHelperTest::testExternalShouldReturnUrlIfValid":7},"times":{"App\\Tests\\Unit\\Service\\UrlHelperTest::testExternalShouldReturnUrlIfValid":0.001}}
