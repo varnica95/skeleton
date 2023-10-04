@@ -8,14 +8,25 @@ use ReflectionParameter;
 
 trait DependencyInjectionTrait
 {
+    /**
+     * @throws \ReflectionException
+     */
     private function getArguments(string $class, string $method = '__construct'): array
     {
         $arguments = [];
         $parameters = Reflection::getParameters($class, $method);
+        $binds = req('config.binds');
 
         /** @var ReflectionParameter $parameter */
         foreach ($parameters as $parameter) {
             $typeName = Reflection::getTypeName($parameter);
+
+            if (in_array($typeName, ['int', 'string', 'bool'])) {
+                $bind = $binds[$parameter->getName()] ?? null;
+                $arguments[$typeName] = $bind ?? $parameter->getDefaultValue();
+
+                continue;
+            }
 
             $instance = $this->injectAndRetrieve($typeName);
             $arguments[$typeName] = $instance;
