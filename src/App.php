@@ -3,7 +3,6 @@
 namespace App;
 
 use App\Abstract\Provider;
-use App\Provider\EventDispatcherProvider;
 
 class App
 {
@@ -18,12 +17,7 @@ class App
 
     private function registerProviders(): void
     {
-        // list of all providers which will be registered
-        $providers = [
-            EventDispatcherProvider::class,
-        ];
-
-        foreach ($providers as $service) {
+        foreach (req('config.providers') as $service) {
             /** @var Provider $provider */
             $provider = $this->getService($service);
             $provider->register();
