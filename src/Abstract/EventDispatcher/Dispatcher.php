@@ -32,4 +32,18 @@ class Dispatcher
             $instance->handle($event);
         }
     }
+
+    public function dispatchAndReturn(Event $event): Event
+    {
+        $listeners = [];
+        if (property_exists($event, 'listeners')) {
+            $listeners = array_merge($listeners, $event->listeners);
+        }
+
+        $name = $event->getName();
+        $this->addListeners($name, $listeners);
+        $this->dispatch($name);
+
+        return $event;
+    }
 }
