@@ -2,8 +2,6 @@
 
 namespace App\Trait\Facade;
 
-use App\Abstract\EventDispatcher\Event;
-
 trait EventDispatcherFacadeTrait
 {
     public function addListener(string $event, string $listener): void

@@ -4,8 +4,6 @@ namespace App\Provider;
 
 use App\Abstract\EventDispatcher\Dispatcher;
 use App\Abstract\Provider;
-use App\EventDispatcher\Event\HandlerEvent;
-use App\EventDispatcher\Listener\HandlerListener;
 use App\Trait\Facade\EventDispatcherFacadeTrait;
 
 class EventDispatcherProvider extends Provider
@@ -17,9 +15,6 @@ class EventDispatcherProvider extends Provider
     }
 
     private static array $eventListeners = [
-        HandlerEvent::class => [
-            HandlerListener::class
-        ]
     ];
 
     public function register(): void

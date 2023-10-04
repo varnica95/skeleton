@@ -2,8 +2,8 @@
 
 namespace App\Facade;
 
+use App\Abstract\EventDispatcher\Dispatcher as MainDispatcher;
 use App\Abstract\Facade;
-use \App\Abstract\EventDispatcher\Dispatcher as MainDispatcher;
 
 /**
  * @method static addListener(string $event, string $listener)

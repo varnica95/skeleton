@@ -2,9 +2,7 @@
 
 namespace App;
 
-use App\Abstract\EventDispatcher\Dispatcher;
 use App\Abstract\Provider;
-use App\EventDispatcher\Event\HandlerEvent;
 use App\Provider\EventDispatcherProvider;
 
 class App
@@ -39,6 +37,5 @@ class App
 
     public function run(): void
     {
-        //
     }
 }
