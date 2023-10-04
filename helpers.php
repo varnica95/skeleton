@@ -1,5 +1,6 @@
 <?php
 
+use App\Helper\Arr;
 use App\Helper\Cache;
 
 if (!function_exists('req')) {
@@ -17,5 +18,30 @@ if (!function_exists('req')) {
         $required = require sprintf('%s.php', $path);
         Cache::save($key, $required);
         return $required;
+    }
+}
+
+if (!function_exists('config')) {
+    // Retrieve a config value
+    function config(string $path): mixed
+    {
+        $path = str_replace('/', '.', $path);
+
+        $cachedItem = Cache::get($path);
+        if (null !== $cachedItem) {
+            return $cachedItem;
+        }
+
+        $exploded = explode('.', $path);
+        $configFile = $exploded[0];
+        unset($exploded[0]);
+        $valuePath = implode('.', $exploded);
+
+        $required = req('config/'.$configFile);
+
+        $value = Arr::dot($required)[$valuePath] ?? null;
+        Cache::save($path, $value);
+
+        return $value;
     }
 }
